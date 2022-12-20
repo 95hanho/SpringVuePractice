@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sejong.vue.virtual.mapper.VirtualMapper">
+	<select id="selectVtlist" resultType="Virtualnum">
+		select *
+		from virtualnum
+	</select>
+	
+	<select id="searchUser" resultType="User">
+		select *
+		from user
+		where id = #{id}
+	</select>
+	
+	<select id="userInput" parameterType="User">
+		insert into user
+		values(#{id}, #{password})
+	</select>
+	
+	<insert id="virtualinput" parameterType="Virtualnum">
+		insert into virtualnum(vnumber, userid, path, usecheck)
+		values(#{vnumber}, #{userId}, #{path}, #{useCheck})
+	</insert>
+	
+	<delete id="vnumdelete">
+		delete from virtualnum
+		where vnumber = #{vnumber}
+	</delete>
+	
+	<delete id="pathdelete">
+		delete from virtualnum
+		where path = #{path}
+	</delete>
+	
+	<update id="virtualupdate" parameterType="Virtualnum">
+		update virtualnum
+		set vnumber = #{vnumber},
+		userid = #{userId},
+		path = #{path},
+		usecheck = #{useCheck}
+		where vtnum = #{vtNum}
+	</update>
+	
+	<delete id="virtualdelete">
+		delete from virtualnum
+		where vtnum = #{vtNum}
+	</delete>
+
+</mapper>
